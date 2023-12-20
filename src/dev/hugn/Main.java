@@ -1,23 +1,34 @@
 package dev.hugn;
 
 import dev.hugn.sorting.QuickSort;
+import dev.hugn.sorting.SortAlgorithms;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[] numbers = createRandomInts(100000000, 100000000);
+        int[] numbers = createRandomInts(10, 100000000);
         long startTime, endTime;
 
         System.out.println("------- Before");
         printArray(numbers);
-        int[] numbersClone;
 
-        System.out.println("------- After sorting (Quick sort): "); // takes ~18s for 100mil items
-        numbersClone = Arrays.copyOf(numbers, numbers.length);
-        startTime = System.nanoTime();
-        QuickSort.sort(numbersClone);
-        endTime = System.nanoTime();
+        doSort("quick", numbers);   // takes ~ 18s for 100mil items
+    }
+
+    private static void doSort(String algoName, int[] numbers) {
+        System.out.printf("------- After sorting (%s sort):\n", algoName);
+        int[] numbersClone = Arrays.copyOf(numbers, numbers.length);
+        var algo = SortAlgorithms.valueOf(algoName.toUpperCase());
+        long startTime = System.nanoTime();
+        switch (algo) {
+            case QUICK -> QuickSort.sort(numbersClone);
+            default -> {
+                System.out.println("Invalid sorting algorithm name!");
+                return;
+            }
+        }
+        long endTime = System.nanoTime();
         printArray(numbersClone, endTime - startTime);
     }
 
