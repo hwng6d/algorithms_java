@@ -10,9 +10,8 @@ public class QuickSort {
     public static void sort(int[] array, int lowIdx, int highIdx) {
         if (lowIdx >= highIdx) return;
 
-        int pivotIdx = new Random().nextInt(highIdx - lowIdx) + lowIdx;
+        int pivotIdx = highIdx;
         int pivot = array[pivotIdx];
-        swap(array, pivotIdx, highIdx);
 
         int leftPointer = partition(array, lowIdx, highIdx, pivot);
         sort(array, lowIdx, leftPointer - 1);

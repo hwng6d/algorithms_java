@@ -11,7 +11,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[] randomNumbers = createRandomInts(100, 100000000);
+        int[] randomNumbers = createRandomInts(100000000, 100000000);
         int[] contiguousNumber = createContiguousNumbers(1000);
 
         doSort("quick", randomNumbers, true, false);        // takes ~ 18s for 100mil items
