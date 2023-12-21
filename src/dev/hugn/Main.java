@@ -1,5 +1,6 @@
 package dev.hugn;
 
+import dev.hugn.sorting.InsertionSort;
 import dev.hugn.sorting.MergeSort;
 import dev.hugn.sorting.QuickSort;
 import dev.hugn.sorting.SortAlgorithms;
@@ -8,14 +9,16 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[] numbers = createRandomInts(10000000, 100000);
+        int[] numbers = createRandomInts(100000000, 100000000);
 
         System.out.println("------- Before");
-        // printArray(numbers);
+         printArray(numbers);
 
-        doSort("quick", numbers, false);    // takes ~ 18s for 100mil items
+        doSort("quick", numbers, false);        // takes ~ 18s for 100mil items
 
-        doSort("merge", numbers, false);    // takes ~ 23s for 100mil items
+        doSort("merge", numbers, false);        // takes ~ 23s for 100mil items
+
+        doSort("insertion", numbers, true);     // takes ~ 1.5 day for 100mil items
 
     }
 
@@ -27,6 +30,7 @@ public class Main {
         switch (algo) {
             case QUICK -> QuickSort.sort(numbersClone);
             case MERGE -> MergeSort.sort(numbersClone);
+            case INSERTION -> InsertionSort.sort(numbersClone);
             default -> {
                 System.out.println("Invalid sorting algorithm name!");
                 return;
