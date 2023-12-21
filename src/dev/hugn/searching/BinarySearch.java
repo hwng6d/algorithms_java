@@ -1,12 +1,6 @@
 package dev.hugn.searching;
 
 public class BinarySearch {
-    public static void main(String[] args) {
-        int[] array = { 1, 5, 7, 9, 11, 12 };
-        int result = search(array, 8);
-        System.out.println("result = " + result);
-    }
-
     public static int search(int[] array, int destiny) {
         int leftIdx = 0;
         int rightIdx = array.length - 1;
