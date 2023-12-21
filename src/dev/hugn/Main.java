@@ -2,23 +2,22 @@ package dev.hugn;
 
 import dev.hugn.searching.BinarySearch;
 import dev.hugn.searching.SearchAlgorithms;
-import dev.hugn.sorting.InsertionSort;
-import dev.hugn.sorting.MergeSort;
-import dev.hugn.sorting.QuickSort;
-import dev.hugn.sorting.SortAlgorithms;
+import dev.hugn.sorting.*;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[] randomNumbers = createRandomInts(100000000, 100000000);
+        int[] randomNumbers = createRandomInts(100, 20);
         int[] contiguousNumber = createContiguousNumbers(1000);
 
-        doSort("quick", randomNumbers, true, false);        // takes ~ 18s for 100mil items
+        doSort("quick", randomNumbers, true, false);            // takes ~ 18s for 100mil items
 
-        doSort("merge", randomNumbers, false, false);        // takes ~ 23s for 100mil items
+        doSort("merge", randomNumbers, false, false);           // takes ~ 23s for 100mil items
 
-        doSort("insertion", randomNumbers, false, false);     // takes ~ 1.5 day for 100mil items
+        doSort("insertion", randomNumbers, false, false);       // takes ~ 1.5 day for 100mil items
+
+        doSort("selection", randomNumbers, false, false);       // takes ~ 1.5 day for 100mil items
 
         doSearch("binary", contiguousNumber, true, false);
 
@@ -67,6 +66,7 @@ public class Main {
             case QUICK -> QuickSort.sort(numbersClone);
             case MERGE -> MergeSort.sort(numbersClone);
             case INSERTION -> InsertionSort.sort(numbersClone);
+            case SELECTION -> SelectionSort.sort(numbersClone);
             default -> {
                 System.out.println("Invalid sorting algorithm name!");
                 return;
